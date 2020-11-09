@@ -1,0 +1,12 @@
+#parse("base.html")
+#@mainLayout()
+<h1>Light $id - $light.getsName()</h1>
+
+<a href="/things/$id?action=toggle">
+    #if ($light.IsLightOn())
+        Toggle Off
+    #else
+        Toggle On
+    #end
+</a>
+#end

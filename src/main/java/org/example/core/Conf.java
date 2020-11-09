@@ -8,7 +8,7 @@ import java.io.File;
 public class Conf {
     // General
     public static final boolean DEBUG_MODE = true;
-    public static final int HTTP_PORT = 8080;
+    public static final int HTTP_PORT = 7075;
 
     // Resources
     public static final File RESOURCES_DIR = new File("src/main/resources");
