@@ -1,6 +1,6 @@
 #parse("base.html")
 #@mainLayout()
-<h1>Light $id - $light.getsName()</h1>
+<h1>Light $id - $light.getName()</h1>
 
 <a href="/things/$id?action=toggle">
     #if ($light.isLightOn())

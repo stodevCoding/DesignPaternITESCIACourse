@@ -6,24 +6,24 @@ public abstract class Thing {
         UNREACHABLE,
     }
     protected String sName = "";
-    protected State eState = State.REACHABLE;
+    protected State state = State.REACHABLE;
 
     public abstract String getTypeName();
     public abstract String getDescription();
 
-    public String getsName() {
+    public String getName() {
         return sName;
     }
 
-    public void setsName(String sName) {
+    public void setName(String sName) {
         this.sName = sName;
     }
 
-    public State geteState() {
-        return eState;
+    public State getState() {
+        return state;
     }
 
-    public void seteState(State eState) {
-        this.eState = eState;
+    public void setState(State state) {
+        this.state = state;
     }
 }

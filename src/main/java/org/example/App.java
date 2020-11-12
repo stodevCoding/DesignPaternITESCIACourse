@@ -4,28 +4,35 @@ import org.example.core.Conf;
 import org.example.core.Template;
 import org.example.middlewares.LoggerMiddleware;
 import org.example.models.Light;
+import org.example.models.Thermostat;
 import spark.Spark;
-
-import java.util.HashMap;
 
 public class App {
 
-    public static HomeSystem homeSystem;
 
     public static void main(String[] args) {
         initialize();
 
-        homeSystem = new HomeSystem();
+        SystemLogger logger = new SystemLogger();
+        HomeSystem homeSystem = new HomeSystem(logger);
         Light light = new Light();
-        light.setsName("Salon");
-        homeSystem.bAddThing(light);
+        light.setName("Salon");
+        light.setLightChangedListener(homeSystem);
+        homeSystem.addThing(light);
 
         light = new Light();
-        light.setsName("Chambre");
-        homeSystem.bAddThing(light);
+        light.setName("Chambre");
+        light.setLightChangedListener(homeSystem);
+        homeSystem.addThing(light);
 
-        HomeSystemController homeSystemController = new HomeSystemController();
-        ThingController thingController = new ThingController();
+        Thermostat thermostat = new Thermostat(10,30);
+        thermostat.setName("Entrée");
+        thermostat.setTemperature(25);
+        homeSystem.addThing(thermostat);
+
+
+        HomeSystemController homeSystemController = new HomeSystemController(homeSystem);
+        ThingController thingController = new ThingController(homeSystem);
 
         Spark.get("/", (req, res) -> homeSystemController.list(req, res));
         Spark.get("/things/:id", (req, res) -> thingController.detail(req, res));
